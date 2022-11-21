@@ -112,6 +112,7 @@ const VehicleAdd = () => {
             setValue={setSpeed}
             isValid={isSpeed}
             setIsValid={setIsSpeed}
+            type="number"
           />
           <InputText
             label={"position x"}
@@ -119,6 +120,7 @@ const VehicleAdd = () => {
             setValue={setPositionX}
             isValid={isPositionX}
             setIsValid={setIsPositionX}
+            type="number"
           />
           <InputText
             label={"position y"}
@@ -126,6 +128,7 @@ const VehicleAdd = () => {
             setValue={setPositionY}
             isValid={isPositionY}
             setIsValid={setIsPositionY}
+            type="number"
           />
           <VehicleDirection direction={direction} setDirection={setDirection} />
         </div> 

@@ -84,6 +84,7 @@ const ScenarioAdd = () => {
             setValue={setTime}
             isValid={isTime}
             setIsValid={setIsTime}
+            type="number"
           />
         </div>
         <div className="flex mt-6 gap-4">
