@@ -19,8 +19,8 @@ const Home = () => {
   useEffect(() => {
     getLocalScenarios();
   }, []);
-  
-  console.log(scenario)
+
+  console.log(scenario);
 
   return (
     <>
@@ -29,7 +29,11 @@ const Home = () => {
         <div className="mt-12">
           <Tabletop />
           {scenario.map((data) => (
-            <TableData data={data} />
+            <TableData
+              data={data}
+              scenario={scenario}
+              setscenario={setscenario}
+            />
           ))}
         </div>
         <div className="flex items-center justify-end my-6">

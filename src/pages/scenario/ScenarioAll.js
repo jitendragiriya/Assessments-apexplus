@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HeadText from "../../components/HeadText";
-import { SCENARIOS } from "../../constants";
+import { SCENARIOS, SCENARIO_WITH_VEHICLE } from "../../constants";
 import { SCENARIO_ADD, VEHICLE_ADD } from "../../constants/urls";
 import { getLocalData, removeLocalData } from "../../hooks/useLocalStoage";
 import TableData from "./TableData";
@@ -13,8 +13,19 @@ const ScenarioAll = () => {
 
   const getLocalScenario = async () => {
     const data = await getLocalData(SCENARIOS);
+    const vehicles = await getLocalData(SCENARIO_WITH_VEHICLE);
     if (data && data.length) {
-      setScenarios(data);
+      let arr = [];
+      data.map((d) => { 
+        let ctn = 0;
+        vehicles.map((da) => { 
+          if (d.name === da.scenario) {
+            ctn++; 
+          }
+        });
+        arr = [...arr, { ...d, ctn }];
+      }); 
+      setScenarios(arr);
     } else {
       navigate(SCENARIO_ADD);
     }
@@ -25,7 +36,9 @@ const ScenarioAll = () => {
 
   //delete all scenario
   const deleteAllScenario = () => {
-    removeLocalData(scenarios);
+    alert("scenaios deleting...")
+    setScenarios([])
+    removeLocalData(SCENARIOS);
   };
 
   return (
@@ -50,7 +63,7 @@ const ScenarioAll = () => {
         </div>
         <TableTop />
         {scenarios.map((data, index) => (
-          <TableData data={data} key={index} />
+          <TableData data={data} key={index} scenario={scenarios} setscenario={setScenarios} />
         ))}
       </div>
     </>

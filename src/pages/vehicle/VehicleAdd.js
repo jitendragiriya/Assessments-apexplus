@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import HeadText from "../../components/HeadText";
 import InputText from "../../components/InputText";
 import SmallText from "../../components/SmallText";
-import { SCENARIO_WITH_VEHICLE, SCENARIOS } from "../../constants";
+import { SCENARIO_WITH_VEHICLE, SCENARIOS, LOCAL_SCENARIO } from "../../constants";
 import { SCENARIO_ADD } from "../../constants/urls";
 import { directions } from "../../database/vehicle-directions";
 import { getLocalData, setLocalData } from "../../hooks/useLocalStoage";
@@ -39,6 +39,8 @@ const VehicleAdd = () => {
     if (vehics && vehics.length) {
       setVehicles(vehics);
     }
+    const localScenario = await getLocalData(LOCAL_SCENARIO);
+    if(localScenario) setScenario(localScenario)
   };
   useEffect(() => {
     getLocalScenarios();
@@ -60,6 +62,7 @@ const VehicleAdd = () => {
     } else {
       const data = {
         id: vehicles.length + 1,
+        scenario,
         vehicleName,
         positionX,
         positionY,

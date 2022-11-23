@@ -16,7 +16,7 @@ const ScenarioAdd = () => {
   //get local scenarios
   const getLocal = async () => {
     const data = await getLocalData(SCENARIOS);
-    if (data && data.langth) {
+    if (data && data.length) {
       setScenario(data);
     }
   };
@@ -50,7 +50,7 @@ const ScenarioAdd = () => {
         }
       });
       if (!isExist) {
-        const alldata = [...scenario, data]; 
+        const alldata = [...scenario, data];  
         setLocalData(SCENARIOS, alldata);
         setScenario(alldata);
         resetInputs();
